@@ -7,7 +7,7 @@ export function LogoutButton() {
   }
 
   return (
-    <form action={handleLogout}>
+    <form action={handleLogout} className="inline">
       <button>Logout</button>
     </form>
   );
