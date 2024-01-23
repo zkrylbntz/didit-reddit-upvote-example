@@ -8,8 +8,12 @@ export default async function Home() {
 
   async function savePost(formData) {
     "use server";
-    const content = formData.get("content");
 
+    if (!session) {
+      throw new Error("You must be logged in to submit a post");
+    }
+
+    const content = formData.get("content");
     console.log("content", content, "by user", session.user.name);
   }
 
