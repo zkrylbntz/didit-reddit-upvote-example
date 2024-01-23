@@ -1,32 +1,19 @@
 import { auth } from "@/auth";
 import { LoginButton } from "./components/LoginButton";
 import { LogoutButton } from "./components/LogoutButton";
+import { db } from "@/db";
+import Link from "next/link";
 
 export default async function Home() {
-  const session = await auth();
-  console.log("session", session);
-
-  async function savePost(formData) {
-    "use server";
-    const content = formData.get("content");
-    console.log("content", content, "by user", session?.user?.name);
-  }
-
-  if (session) {
-    return (
-      <div>
-        You logged in, {session.user.name}! <LogoutButton />
-        <form action={savePost}>
-          <textarea name="content" className="text-black" />
-          <button>Submit post</button>
-        </form>
-      </div>
-    );
-  }
+  const { rows: posts } = await db.query("SELECT * FROM posts");
 
   return (
-    <div>
-      You need to login <LoginButton />
-    </div>
+    <ul>
+      {posts.map((post) => (
+        <li key={post.id}>
+          <Link href={`/post/${post.id}`}>{post.title}</Link>
+        </li>
+      ))}
+    </ul>
   );
 }
