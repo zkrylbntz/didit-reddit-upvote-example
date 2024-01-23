@@ -8,11 +8,8 @@ export default async function Home() {
 
   async function savePost(formData) {
     "use server";
-
-    if (session) {
-      const content = formData.get("content");
-      console.log("content", content, "by user", session?.user?.name);
-    }
+    const content = formData.get("content");
+    console.log("content", content, "by user", session?.user?.name);
   }
 
   if (session) {
