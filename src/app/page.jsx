@@ -11,7 +11,7 @@ export default async function Home() {
 
     if (session) {
       const content = formData.get("content");
-      console.log("content", content, "by user", session.user.name);
+      console.log("content", content, "by user", session?.user?.name);
     }
   }
 
