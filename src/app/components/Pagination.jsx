@@ -1,5 +1,7 @@
 import { POSTS_PER_PAGE } from "@/config";
 import { db } from "@/db";
+import clsx from "clsx";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export async function Pagination({ currentPage = 1 }) {
   const { rows: postCount } = await db.query(`SELECT COUNT(*) FROM posts`);
@@ -7,22 +9,24 @@ export async function Pagination({ currentPage = 1 }) {
   const numOfPages = Math.ceil(count / POSTS_PER_PAGE);
 
   return (
-    <ul className="flex space-x-3 text-2xl">
+    <ul className="flex w-1/2 mx-auto space-x-3 text-2xl">
       {currentPage > 1 && (
         <li>
           <a
             href={currentPage - 1 === 1 ? `/` : `/page/${currentPage - 1}`}
-            className="p-2 hover:bg-zinc-800"
+            className="p-2 hover:bg-zinc-800 block text-zinc-400"
           >
-            Previous
+            <GrFormPrevious />
           </a>
         </li>
       )}
       {Array.from({ length: numOfPages }, (_, index) => (
-        <li key={index}>
+        <li key={index} className="items-center flex">
           <a
             href={index > 0 ? `/page/${index + 1}` : `/`}
-            className="p-2 hover:bg-zinc-800"
+            className={clsx(` hover:bg-zinc-800 `, {
+              "text-pink-400": currentPage === index + 1,
+            })}
           >
             {index + 1}
           </a>
@@ -32,9 +36,9 @@ export async function Pagination({ currentPage = 1 }) {
         <li>
           <a
             href={`/page/${currentPage + 1}`}
-            className="p-2 hover:bg-zinc-800"
+            className="p-2 hover:bg-zinc-800 block"
           >
-            Next
+            <GrFormNext />
           </a>
         </li>
       )}
