@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import auth from "../middleware";
+import auth from "../app/middleware";
 import { revalidatePath } from "next/cache";
 import { VoteButton } from "./VoteButton";
 
@@ -15,6 +15,7 @@ export async function Vote({ postId, votes }) {
     );
 
     revalidatePath("/");
+    revalidatePath(`/post/${postId}`);
   }
 
   async function downvote() {
@@ -26,17 +27,20 @@ export async function Vote({ postId, votes }) {
     );
 
     revalidatePath("/");
+    revalidatePath(`/post/${postId}`);
   }
 
   return (
-    <div>
+    <>
       {votes} votes
-      <form action={upvote}>
-        <VoteButton label="Upvote" />
-      </form>
-      <form action={downvote}>
-        <VoteButton label="Downvote" />
-      </form>
-    </div>
+      <div className="flex space-x-3">
+        <form action={upvote}>
+          <VoteButton label="Upvote" />
+        </form>
+        <form action={downvote}>
+          <VoteButton label="Downvote" />
+        </form>
+      </div>
+    </>
   );
 }

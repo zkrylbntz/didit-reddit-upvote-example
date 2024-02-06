@@ -1,4 +1,4 @@
-import { PostList } from "../../components/PostList";
+import { PostList } from "../../../components/PostList";
 
 export default async function PageNumberRoute({ params }) {
   return (

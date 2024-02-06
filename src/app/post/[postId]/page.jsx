@@ -1,4 +1,6 @@
-import { Vote } from "@/app/components/Vote";
+import { CommentForm } from "@/components/CommentForm";
+import { CommentList } from "@/components/CommentList";
+import { Vote } from "@/components/Vote";
 import { db } from "@/db";
 
 export default async function SinglePostPage({ params }) {
@@ -34,7 +36,11 @@ export default async function SinglePostPage({ params }) {
 
       <h2>Votes</h2>
       <Vote postId={post.id} votes={post.vote_total} />
-      <ul>
+
+      <CommentForm postId={post.id} />
+      <CommentList postId={post.id} />
+
+      {/* <ul>
         {votes.map((vote) => (
           <li key={vote.id} className="text-zinc-400">
             <span className="text-white">{vote.name}</span> votes{" "}
@@ -42,7 +48,7 @@ export default async function SinglePostPage({ params }) {
             <small>{new Date(vote.created_at).toUTCString()}</small>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 }

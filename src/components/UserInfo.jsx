@@ -1,4 +1,4 @@
-import auth from "../middleware";
+import auth from "../app/middleware";
 import { LoginButton } from "./LoginButton";
 import { LogoutButton } from "./LogoutButton";
 
