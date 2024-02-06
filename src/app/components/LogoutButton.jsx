@@ -8,7 +8,9 @@ export function LogoutButton() {
 
   return (
     <form action={handleLogout} className="inline">
-      <button>Logout</button>
+      <button className="bg-pink-300 text-black px-3 py-2 rounded">
+        Logout
+      </button>
     </form>
   );
 }

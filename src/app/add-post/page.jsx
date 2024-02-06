@@ -28,11 +28,12 @@ export default async function Home() {
 
   if (!session) {
     return (
-      <div>
+      <div className="max-w-screen-lg mx-auto p-4 mt-10">
         You need to login to create a post <LoginButton />
       </div>
     );
   }
+
   return (
     <div className="max-w-screen-lg mx-auto p-4 bg-zinc-800 mt-10 rounded-xl">
       <h2 className="text-3xl mb-4">Add a new post</h2>
