@@ -1,20 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Upvote
 
-## Getting Started
+Upvote is a Reddit-esque web application that allows users to create posts, upvote and downvote posts, and common on posts in a multi-threaded nested list.
 
-First, run the development server:
+The project is built using Next.js with the /app router and Tailwind CSS, and uses NextAuth for user authentication. The data is stored in a Postgres database, which is created and accessed with raw SQL queries using the `pg` package.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The project is a work in progress and is not yet complete.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+
+- [x] View a list of posts
+- [x] View a single post
+- [x] Create a post
+- [x] Upvote and downvote posts
+- [x] Pagination of posts
+- [x] Comment on posts
+- [x] Nested comments (recursive lists)
+- [x] User authentication
+
+## Future features
+
+- [ ] User profiles
+- [ ] Sorting posts by recent (date posted), top (most upvotes), and most controversial (most upvotes _and_ downvotes)
+- [ ] User karma scores
+- [ ] User settings
+- [ ] Searching posts
+- [ ] Subreddits (separate communities, that isn't just one big list of posts)
+- [ ] Moderation tools / reporting objectionable comments
+- [ ] User notifications
+- [ ] User private messaging
+- [ ] User blocking
+- [ ] User following
+- [ ] User feed (posts from users you follow)
+- [ ] User badges
+- [ ] User trophies
+- [ ] User flairs
+
+## Setup instructions
+
+1. Clone the repo
+2. Run `npm install`
+3. Create a `.env.local` file in the root directory and add the following environment variables:
+   - `DATABASE_URL` - the URL of your Postgres database (eg. the Supabase connection string)
+   - `AUTH_SECRET` - the Next Auth secret string (used for if we enable password logins)
+   - `AUTH_GITHUB_ID` - the GitHub OAuth client ID (create yours in [Github developer settings](https://github.com/settings/apps/new))
+   - `AUTH_GITHUB_SECRET` - the GitHub OAuth client secret (create this in [Github developer settings](https://github.com/settings/apps/new))
+4. Create the database schema by running the SQL commands in `schema.sql` in your database (eg. by running the commands in Supabase Query Editor)
+5. Run `npm run dev` to start the development server
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
