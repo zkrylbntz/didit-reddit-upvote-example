@@ -4,10 +4,9 @@ import { revalidatePath } from "next/cache";
 import { VoteButton } from "./VoteButton";
 
 export async function Vote({ postId, votes }) {
-  const session = await auth();
-
   async function upvote() {
     "use server";
+    const session = await auth();
     console.log("Upvote", postId, "by user", session.user.id);
     await db.query(
       "INSERT INTO votes (user_id, post_id, vote, vote_type) VALUES ($1, $2, $3, $4)",
@@ -20,6 +19,7 @@ export async function Vote({ postId, votes }) {
 
   async function downvote() {
     "use server";
+    const session = await auth();
     console.log("Downvote", postId, "by user", session.user.id);
     await db.query(
       "INSERT INTO votes (user_id, post_id, vote, vote_type) VALUES ($1, $2, $3, $4)",
