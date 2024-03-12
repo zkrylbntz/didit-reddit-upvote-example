@@ -73,9 +73,8 @@ CREATE TABLE votes (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
     post_id INT NULL REFERENCES posts(id),
-    comment_id INT NULL REFERENCES comments(id),
     vote SMALLINT CHECK (vote IN (-1, 1)),
     vote_type VARCHAR(255) CHECK (vote_type IN ('post', 'comment')),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(user_id, post_id, comment_id, vote_type)
+    -- UNIQUE(user_id, post_id, vote_type)
 );
