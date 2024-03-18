@@ -1,7 +1,6 @@
 import { db } from "@/db";
 import auth from "../app/middleware";
 import { revalidatePath } from "next/cache";
-import { VoteButton } from "./VoteButton";
 import {
   TbArrowBigUp,
   TbArrowBigUpFilled,
@@ -41,29 +40,23 @@ async function handleVote(userId, postId, newVote) {
       [userId, postId, newVote]
     );
   }
+
+  // revalidatePath("/");
+  revalidatePath(`/post/${postId}`);
 }
 
 export async function Vote({ postId, votes }) {
   const session = await auth();
-
   const existingVote = await getExistingVote(session.user.id, postId);
 
   async function upvote() {
     "use server";
-
     await handleVote(session.user.id, postId, 1);
-
-    // revalidatePath("/");
-    revalidatePath(`/post/${postId}`);
   }
 
   async function downvote() {
     "use server";
-
     await handleVote(session.user.id, postId, -1);
-
-    // revalidatePath("/");
-    revalidatePath(`/post/${postId}`);
   }
 
   return (
