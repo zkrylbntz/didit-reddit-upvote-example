@@ -15,7 +15,7 @@ export async function CommentList({ postId, parentCommentId = null }) {
   console.log("comments", comments.rows);
 
   return (
-    <ul className="ml-0">
+    <ul className="ml-4">
       {comments.rows.map((comment) => (
         <li key={comment.id} className="pt-2">
           <div className="flex space-x-3 items-center pb-2">

@@ -17,7 +17,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <header className="border-b border-zinc-800 p-4 flex items-center">
+          <header className="border-b border-zinc-200 p-4 flex items-center">
             <Link href="/" className="text-xl">
               Didit
             </Link>

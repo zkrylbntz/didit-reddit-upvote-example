@@ -22,7 +22,7 @@ export async function PostList({ currentPage = 1 }) {
         {posts.map((post) => (
           <li
             key={post.id}
-            className=" py-4 border-b border-zinc-800 flex space-x-6 hover:bg-zinc-800"
+            className=" py-4 flex space-x-6 hover:bg-zinc-200 rounded-lg"
           >
             <Vote postId={post.id} votes={post.vote_total} />
             <div>
@@ -32,12 +32,11 @@ export async function PostList({ currentPage = 1 }) {
               >
                 {post.title}
               </Link>
-              <p className="text-zinc-400">posted by {post.name}</p>
+              <p className="text-zinc-700">posted by {post.name}</p>
             </div>
           </li>
         ))}
       </ul>
-
       <Pagination currentPage={currentPage} />
     </>
   );

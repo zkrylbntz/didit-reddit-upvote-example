@@ -75,14 +75,14 @@ export async function Vote({ postId, votes }) {
           {existingVote?.vote === 1 ? (
             <TbArrowBigUpFilled
               size={24}
-              className={clsx("hover:text-orange-300", {
+              className={clsx("hover:text-orange-600", {
                 "text-pink-300": existingVote?.vote === 1,
               })}
             />
           ) : (
             <TbArrowBigUp
               size={24}
-              className={clsx("hover:text-orange-300", {
+              className={clsx("hover:text-orange-600", {
                 "text-pink-300": existingVote?.vote === 1,
               })}
             />
@@ -93,26 +93,20 @@ export async function Vote({ postId, votes }) {
           {existingVote?.vote === -1 ? (
             <TbArrowBigDownFilled
               size={24}
-              className={clsx("hover:text-orange-300", {
+              className={clsx("hover:text-blue-600", {
                 "text-blue-300": existingVote?.vote === -1,
               })}
             />
           ) : (
             <TbArrowBigDown
               size={24}
-              className={clsx("hover:text-orange-300", {
+              className={clsx("hover:text-blue-600", {
                 "text-blue-300": existingVote?.vote === -1,
               })}
             />
           )}
         </button>
       </form>
-      {/* <form action={upvote}>
-          <VoteButton label="Upvote" isActive={existingVote?.vote === 1} />
-        </form>
-        <form action={downvote}>
-          <VoteButton label="Downvote" isActive={existingVote?.vote === -1} />
-        </form> */}
     </>
   );
 }
