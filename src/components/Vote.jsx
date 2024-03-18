@@ -50,7 +50,6 @@ export async function Vote({ postId, votes }) {
 
   async function upvote() {
     "use server";
-    console.log("Upvote", postId, "by user", session.user.id);
 
     await handleVote(session.user.id, postId, 1);
 
@@ -60,7 +59,6 @@ export async function Vote({ postId, votes }) {
 
   async function downvote() {
     "use server";
-    console.log("Downvote", postId, "by user", session.user.id);
 
     await handleVote(session.user.id, postId, -1);
 
