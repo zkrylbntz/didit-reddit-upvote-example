@@ -19,7 +19,7 @@ The project is a work in progress and is not yet complete.
 
 ## Setup instructions
 
-1. Fork the repository and clone your fork to your local machine
+1. Fork the repository (check "copy the main branch only") and clone your fork to your local machine
 2. Run `npm install`
 3. Create a `.env.local` file in the root directory and add the following environment variables:
    - `DATABASE_URL` - the URL of your Postgres database (eg. the Supabase connection string)
