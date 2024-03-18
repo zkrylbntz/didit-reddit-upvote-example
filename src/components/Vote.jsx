@@ -1,13 +1,7 @@
 import { db } from "@/db";
 import auth from "../app/middleware";
 import { revalidatePath } from "next/cache";
-import {
-  TbArrowBigUp,
-  TbArrowBigUpFilled,
-  TbArrowBigDown,
-  TbArrowBigDownFilled,
-} from "react-icons/tb";
-import clsx from "clsx";
+import { VoteButtons } from "./VoteButtons";
 
 async function getExistingVote(userId, postId) {
   const { rows: existingVotes } = await db.query(
@@ -62,7 +56,13 @@ export async function Vote({ postId, votes }) {
   return (
     <>
       <form className="flex items-center space-x-3 pl-3">
-        <button formAction={upvote}>
+        <VoteButtons
+          upvote={upvote}
+          downvote={downvote}
+          votes={votes}
+          existingVote={existingVote}
+        />
+        {/* <button formAction={upvote}>
           {existingVote?.vote === 1 ? (
             <TbArrowBigUpFilled
               size={24}
@@ -96,7 +96,7 @@ export async function Vote({ postId, votes }) {
               })}
             />
           )}
-        </button>
+        </button> */}
       </form>
     </>
   );
