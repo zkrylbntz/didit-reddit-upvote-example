@@ -2,6 +2,13 @@ import { db } from "@/db";
 import auth from "../app/middleware";
 import { revalidatePath } from "next/cache";
 import { VoteButton } from "./VoteButton";
+import {
+  TbArrowBigUp,
+  TbArrowBigUpFilled,
+  TbArrowBigDown,
+  TbArrowBigDownFilled,
+} from "react-icons/tb";
+import clsx from "clsx";
 
 async function getExistingVote(userId, postId) {
   const { rows: existingVotes } = await db.query(
@@ -63,15 +70,49 @@ export async function Vote({ postId, votes }) {
 
   return (
     <>
-      {votes} votes
-      <div className="flex space-x-3">
-        <form action={upvote}>
+      <form className="flex items-center space-x-3 pl-3">
+        <button formAction={upvote}>
+          {existingVote?.vote === 1 ? (
+            <TbArrowBigUpFilled
+              size={24}
+              className={clsx("hover:text-orange-300", {
+                "text-pink-300": existingVote?.vote === 1,
+              })}
+            />
+          ) : (
+            <TbArrowBigUp
+              size={24}
+              className={clsx("hover:text-orange-300", {
+                "text-pink-300": existingVote?.vote === 1,
+              })}
+            />
+          )}
+        </button>
+        <span className="w-6 text-center tabular-nums">{votes}</span>
+        <button formAction={downvote}>
+          {existingVote?.vote === -1 ? (
+            <TbArrowBigDownFilled
+              size={24}
+              className={clsx("hover:text-orange-300", {
+                "text-blue-300": existingVote?.vote === -1,
+              })}
+            />
+          ) : (
+            <TbArrowBigDown
+              size={24}
+              className={clsx("hover:text-orange-300", {
+                "text-blue-300": existingVote?.vote === -1,
+              })}
+            />
+          )}
+        </button>
+      </form>
+      {/* <form action={upvote}>
           <VoteButton label="Upvote" isActive={existingVote?.vote === 1} />
         </form>
         <form action={downvote}>
           <VoteButton label="Downvote" isActive={existingVote?.vote === -1} />
-        </form>
-      </div>
+        </form> */}
     </>
   );
 }
