@@ -25,30 +25,18 @@ export default async function SinglePostPage({ params }) {
   );
 
   return (
-    <div className="max-w-screen-lg mx-auto pt-10">
-      <h1 className="text-2xl">
-        {post.vote_total} - {post.title}
-      </h1>
-      <p className="text-zinc-400 border-b border-zinc-800 mb-4">
-        Posted by {post.name}
-      </p>
-      <main className="whitespace-pre-wrap">{post.body}</main>
-
-      <h2>Votes</h2>
-      <Vote postId={post.id} votes={post.vote_total} />
+    <div className="max-w-screen-lg mx-auto pt-4 pr-4">
+      <div className="flex space-x-6">
+        <Vote postId={post.id} votes={post.vote_total} />
+        <div className="">
+          <h1 className="text-2xl">{post.title}</h1>
+          <p className="text-zinc-400 mb-4">Posted by {post.name}</p>
+        </div>
+      </div>
+      <main className="whitespace-pre-wrap m-4">{post.body}</main>
 
       <CommentForm postId={post.id} />
       <CommentList postId={post.id} />
-
-      {/* <ul>
-        {votes.map((vote) => (
-          <li key={vote.id} className="text-zinc-400">
-            <span className="text-white">{vote.name}</span> votes{" "}
-            <span className="text-white">{vote.vote}</span>{" "}
-            <small>{new Date(vote.created_at).toUTCString()}</small>
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 }

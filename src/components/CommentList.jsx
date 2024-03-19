@@ -12,10 +12,9 @@ export async function CommentList({ postId, parentCommentId = null }) {
     commentArgs.push(parentCommentId);
   }
   const comments = await db.query(commentQuery, commentArgs);
-  console.log("comments", comments.rows);
 
   return (
-    <ul className="ml-0">
+    <ul className="ml-4">
       {comments.rows.map((comment) => (
         <li key={comment.id} className="pt-2">
           <div className="flex space-x-3 items-center pb-2">
@@ -28,7 +27,7 @@ export async function CommentList({ postId, parentCommentId = null }) {
             />
             <span className="font-bold text-zinc-400">{comment.name}</span>
           </div>
-          <div className="ml-4 border-l border-zinc-600 pl-2 flex flex-col space-y-1">
+          <div className="ml-4 border-l border-zinc-300 pl-2 flex flex-col space-y-1">
             <span className="pl-4">{comment.body}</span>
             <CommentForm postId={postId} parentCommentId={comment.id} />
             <CommentList postId={postId} parentCommentId={comment.id} />
