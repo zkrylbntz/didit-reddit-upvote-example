@@ -41,16 +41,16 @@ async function handleVote(userId, postId, newVote) {
 
 export async function Vote({ postId, votes }) {
   const session = await auth();
-  const existingVote = await getExistingVote(session.user.id, postId);
+  const existingVote = await getExistingVote(session?.user?.id, postId);
 
   async function upvote() {
     "use server";
-    await handleVote(session.user.id, postId, 1);
+    await handleVote(session?.user?.id, postId, 1);
   }
 
   async function downvote() {
     "use server";
-    await handleVote(session.user.id, postId, -1);
+    await handleVote(session?.user?.id, postId, -1);
   }
 
   return (
