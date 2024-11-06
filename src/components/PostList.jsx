@@ -3,6 +3,7 @@ import { Pagination } from "./Pagination";
 import { Vote } from "./Vote";
 import { db } from "@/db";
 import { POSTS_PER_PAGE } from "@/config";
+import { DeleteButton } from "./DeleteButton";
 
 export async function PostList({ currentPage = 1 }) {
   const { rows: posts } =
@@ -33,6 +34,7 @@ export async function PostList({ currentPage = 1 }) {
                 {post.title}
               </Link>
               <p className="text-zinc-700">posted by {post.name}</p>
+              {/* <DeleteButton /> */}
             </div>
           </li>
         ))}
