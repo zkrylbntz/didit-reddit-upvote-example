@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
               Add post
             </Link>
             <div className="ml-auto">
-              <UserInfo />
+              <UserInfo href="/profile" />
             </div>
           </header>
           <main className="max-w-screen-xl lg:mx-auto">{children}</main>
